@@ -26,6 +26,17 @@ public class FirstLetters {
      */
     public static String firstLetters(String words) {
         // TODO: complete
-        return "";
+//        return "";
+        StringBuilder total = new StringBuilder();
+        String comp = " ";
+        for (int i = 1; i <= words.length(); i++){
+            String previous = String.valueOf(words.charAt(i-1));
+            if (previous.equals(comp)){
+                total.append(words.charAt(i));
+            } else if (i == 1){
+                total.append(words.charAt(0));
+            }
+        }
+        return total.toString();
     }
 }
