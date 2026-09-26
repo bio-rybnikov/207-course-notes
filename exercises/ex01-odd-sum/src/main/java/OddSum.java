@@ -36,10 +36,8 @@ public class OddSum {
         if (arr.length <= 1){
             return total;
         } else {
-            for (int i = 1; i <= arr.length; i += 2){
-                if (i % 2 != 0){
-                    total += arr[i]
-                }
+            for (int i = 1; i < arr.length; i += 2){
+                total += arr[i];
             }
             return total;
         }
