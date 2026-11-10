@@ -109,7 +109,21 @@ public class NumberTriangle {
     //       value of wherever you ended up. An empty path means "stay here".
     //       Hint: String#charAt(int) and String#length() are all you need for the
     //       iterative version; a recursive version can use String#substring(1).
-    return 0;
+//    return this.root;
+    if (path.isEmpty()){
+      return this.root;
+    } else {
+      NumberTriangle current = this;
+      for (int i = 0; i < path.length(); i++) {
+        if (path.charAt(i) == 'r') {
+          current = current.right;
+        } else if (path.charAt(i) == 'l') {
+          current = current.left;
+        }
+      }
+      return current.root;
+//      return 0;
+    }
   }
 
   /**
@@ -175,11 +189,31 @@ public class NumberTriangle {
     NumberTriangle top = null;
 
     String line = br.readLine();
+    NumberTriangle[] previousRow = new NumberTriangle[1];
     while (line != null) {
 
       // Remove this line when you are done; it is here so that the starter code
       // prints the contents of the file when you run it.
       System.out.println(line);
+      String[] row = line.split(" ");
+      if (row.length == 1) {
+        top = new NumberTriangle(Integer.parseInt(row[0]));
+        previousRow[0] = top;
+      } else {
+        NumberTriangle[] currentRow = new NumberTriangle[row.length];
+        int counter = 0;
+        for (String num: row){
+          currentRow[counter] = new NumberTriangle(Integer.parseInt(num));
+          counter++;
+        }
+        int childCounter = 0;
+        for (NumberTriangle element: previousRow){
+          element.setLeft(currentRow[childCounter]);
+          element.setRight(currentRow[childCounter+1]);
+          childCounter++;
+        }
+        previousRow = currentRow;
+      }
 
       // TODO: process the line. Splitting it on spaces gives you the numbers in
       //       this row; make a NumberTriangle for each one, then wire this row up
