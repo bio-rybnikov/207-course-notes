@@ -1,18 +1,24 @@
 public class Rectangle {
+
+    /** The width of this rectangle. */
     private double width;
+
+    /** The height of this rectangle. */
     private double height;
 
+    /** Creates a new rectangle with given width and height. */
     public Rectangle(double w,double h){
-        this.width=w;
-        this.height=h;
+        this.width = w;
+        this.height = h;
     }
 
+    /** Calculates and returns the area of this rectangle. */
     public double area(){
-        return width*height;
+        return width * height;
     }
 
     /**
-     * scales the rectangle
+     * Scales this rectangle
      * @param factor the factor
      */
     public void scale(double factor) {
